@@ -1,0 +1,97 @@
+/* 새로운 박스 스타일 */
+.login-container{
+  background-color: white; /* 배경색 */
+  border-radius: 8px; /* 모서리 둥글게 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 */
+  padding: 20px; /* 내부 여백 */
+  width: 300px; /* 원하는 너비 */
+  margin: 20px auto; /* 위쪽 여백 및 중앙 정렬 */
+}
+
+/* 제목 스타일 */
+h4 {
+  text-align: center; /* 중앙 정렬 */
+  color: #333; /* 글자 색상 */
+}
+
+/* 제목 스타일 */
+.login-container h2 {
+  text-align: center; /* 중앙 정렬 */
+  color: #333; /* 글자 색상 */
+}
+
+/* 입력 필드 스타일 */
+.login-container input[type="text"],
+.login-container input[type="password"] {
+  width: 100%; /* 전체 너비 사용 */
+  padding: 10px; /* 내부 여백 */
+  margin: 10px 0; /* 위아래 여백 */
+  border: 1px solid #ccc; /* 테두리 */
+  border-radius: 4px; /* 모서리 둥글게 */
+  font-size: 16px; /* 글자 크기 */
+  box-sizing: border-box; /* 테두리와 패딩을 포함하여 너비 계산 */
+}
+
+/* 버튼 스타일 */
+.login-button,
+.signup-button {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+
+}
+
+.login-button {
+  background-color: #03dac6;
+  /* 로그인 버튼 색상 */
+  color: white;
+}
+
+.login-button:hover {
+  background-color: #03dac6;
+  /* 로그인 버튼 호버 색상 */
+}
+
+.signup-button {
+  background-color: #007bff;
+  /* 회원가입 버튼 색상 */
+  color: white;
+}
+
+.signup-button:hover {
+  background-color: #0056b3;
+  /* 회원가입 버튼 호버 색상 */
+}
+
+.toggle-button {
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  padding: 0;
+  font-size: 1rem;
+}
+
+/* 모바일 화면용 스타일 */
+@media (max-width: 480px) {
+  .login-signup-container {
+    padding: 20px;
+    margin: 0 50px;
+    /* 양쪽에 10px의 마진 추가 */
+  }
+
+  .login-button,
+  .signup-button {
+    padding: 10px;
+    /* 버튼 패딩 조정 */
+  }
+
+  .login-signup-container input {
+    padding: 8px;
+    /* 입력 필드 패딩 조정 */
+  }
+}

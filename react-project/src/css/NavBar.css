@@ -1,0 +1,36 @@
+/* NavBar.css */
+.nav-bar {
+    background-color: #282c34;
+    padding: 1rem;
+    position: fixed;  /* 화면에 고정 */
+    bottom: 0;        /* 화면의 맨 아래에 위치 */
+    left: 0;
+    width: 100%;      /* 네비게이션 바가 화면 전체 너비를 차지 */
+    display: flex;
+    justify-content: space-around;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);  /* 상단에 그림자 추가 */
+  }
+  
+  .nav-bar ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .nav-bar ul li {
+    margin: 0 1rem;
+  }
+  
+  .nav-bar ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .nav-bar ul li a:hover {
+    text-decoration: underline;
+  }
+  

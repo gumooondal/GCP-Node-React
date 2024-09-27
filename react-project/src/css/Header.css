@@ -1,0 +1,40 @@
+/* Header Styles */
+.app-header {
+  background-color: #6200ee; /* 헤더 배경색 */
+  color: white; /* 헤더 글자색 */
+  padding: 1rem; /* 패딩 */
+  text-align: center; /* 텍스트 가운데 정렬 */
+  position: relative; /* 메뉴가 위치할 기준 설정 */
+}
+
+/* 로그아웃 버튼 스타일 */
+.logout-button {
+  background-color: #ff4d4d;
+  /* 빨간색 배경 */
+  color: white;
+  /* 흰색 텍스트 */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+/* 로그아웃 버튼 호버 스타일 */
+.logout-button:hover {
+  background-color: #ff1a1a;
+  /* 더 어두운 빨간색 */
+}
+
+.nonlogin-button {
+  background-color: #f200ff;
+  color: white;
+  /* 흰색 텍스트 */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}

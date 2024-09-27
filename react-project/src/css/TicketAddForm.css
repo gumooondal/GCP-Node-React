@@ -1,0 +1,146 @@
+.app-container {
+  width: 100%;
+  max-width: 800px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.ticket-form-container,
+.ticket-list-container {
+  margin-bottom: 0px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* 티켓 폼 스타일 */
+.ticket-form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.ticket-form h2 {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.ticket-form input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.ticket-form .ticket-count-options,
+.ticket-form .expiry-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  /* 버튼 간격 */
+  margin-bottom: 20px;
+}
+
+.ticket-form .option,
+.ticket-form .expiry-option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  user-select: none;
+}
+
+.ticket-form .option.selected,
+.ticket-form .expiry-option.selected {
+  background-color: #007bff;
+  color: white;
+}
+
+.ticket-form input[type="number"] {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.ticket-form input[type="date"] {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.helper-text {
+  margin-bottom: 10px;
+}
+
+.expiry-options {
+  display: flex;
+  /* Flexbox 활성화 */
+  justify-content: center;
+  /* 가로 방향으로 가운데 정렬 */
+  gap: 10px;
+  /* 버튼 사이의 간격 조정 (필요에 따라) */
+}
+
+.ticket-form button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  box-sizing: border-box;
+  background-color: #007bff;
+  /* 티켓 등록 버튼 색상 */
+  color: white;
+}
+
+.ticket-form button:hover {
+  background-color: #0056b3;
+}
+
+/* 헤더 스타일 */
+.header {
+  display: flex;
+  justify-content: flex-end;
+  /* 모바일 환경에서는 유지 */
+  position: fixed;
+  right: 0;
+  top: 0;
+  padding: 10px 20px;
+
+  @media (min-width: 681px) {
+    /* 웹 환경 */
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    /* 화면 중앙으로 이동 */
+    padding: 10px 0px;
+    z-index: 1000;
+    width: auto;
+    /* 기본적으로 auto 설정 */
+  }
+}
+
+label {
+  font-size: 1.2em;
+  /* 폰트 크기 조정 */
+  font-weight: bold;
+  /* 글씨를 굵게 */
+  margin-bottom: 5px;
+  /* 아래쪽 여백 추가 */
+}

@@ -37,12 +37,15 @@ function TicketList() {
   };
 
   const resetClick = () => {
-    if (userId) { // userPhoneNumber → userId로 변경
-      handleReset(isLoggedIn, userId, setTickets); // userPhoneNumber → userId로 변경
+    if (isLoggedIn && userId) { // 로그인 되어 있고 userId가 있는 경우
+      handleReset(isLoggedIn, userId, setTickets);
+    } else if (!isLoggedIn) { // 비로그인 상태인 경우
+      console.warn('User is not logged in. Resetting local storage tickets.');
+      handleReset(false, null, setTickets); // 로그인되지 않았으므로 userId 전달하지 않음
     } else {
-      console.warn('User ID is not set.'); // Phone number 경고 메시지 수정
+      console.warn('User ID is not set. Unable to reset tickets.');
     }
-  };
+  };  
 
   const saveTickets = (updatedTickets) => {
     if (!isLoggedIn) {

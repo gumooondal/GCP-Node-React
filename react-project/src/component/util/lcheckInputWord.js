@@ -10,6 +10,13 @@ export const lcheckInputWord = (event) => {
   inputField.addEventListener('input', function () {
     let inputValue = inputField.value; // 현재 입력값
 
+    // 입력 길이 검사 (15글자 이상)
+    if (inputValue.length > 15) {
+      alert("입력은 15글자 이하로 제한됩니다.");
+      inputField.value = inputValue.slice(0, 15); // 15글자까지만 유지
+      return;
+    }
+
     // 특수 문자 검사 및 제거
     if (expText.test(inputValue)) {
       alert("보안: 특수문자(%,=,*,>,<,\",',-)는 입력할 수 없습니다.");

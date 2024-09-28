@@ -27,42 +27,43 @@ function TicketAddForm() {
     }, [isLoggedIn]);
 
     const validateGymName = (event) => {
-        const value = event.target.value; // 입력된 값을 가져옴
+        const value = event.target.value;
 
         if (value.length > 15) {
             alert('클라이밍장 이름은 15자 이하로 입력해주세요.');
-            event.preventDefault(); // 유효하지 않은 경우 이벤트 기본 동작 방지
-            return false; // 유효하지 않은 경우 false 반환
+            event.preventDefault();
+            return false;
         } else if (!tcheckInputWord(value)) {
-            // tcheckInputWord가 false를 반환하면 알림이 이미 발생하므로 추가적인 작업은 필요 없습니다.
-            event.preventDefault(); // 유효하지 않은 경우 이벤트 기본 동작 방지
-            return false; // 유효하지 않은 경우 false 반환
+            event.preventDefault();
+            return false;
         }
-        return true; // 유효성 검사 통과
+        return true;
     };
 
-    // validateTicketCount 함수 예시
     const validateTicketCount = (value) => {
         if (!/^\d*$/.test(value)) {
             alert('숫자만 입력 가능합니다.');
-            return false; // 유효하지 않음
+            return false;
         } else if (parseInt(value) > 10) {
             alert('티켓 수량이 유효하지 않습니다. 최대 10개까지 입력 가능합니다.');
-            return false; // 유효하지 않음
+            return false;
         }
-        return true; // 유효성 검사 통과
+        return true;
     };
 
-    // onChange 핸들러
     const handleGymNameChange = (e) => {
-        const isValid = validateGymName(e); // 유효성 검사
+        const isValid = validateGymName(e);
         if (isValid) {
-            setGymName(e.target.value); // 유효한 경우에만 상태 업데이트
+            setGymName(e.target.value);
         }
     };
 
     const handleRegister = async () => {
         const ticketCount = selectedCount || customCount;
+
+        if (!validateTicketCount(ticketCount)) {
+            return;
+        }
 
         if (!gymName || !ticketCount || !registrationDate || !expiry) {
             alert('모든 필드를 채워주세요.');
@@ -77,7 +78,6 @@ function TicketAddForm() {
         };
 
         if (isLoggedIn) {
-            // 로그인 상태에서 서버에 데이터 저장 (ID는 서버에서 생성)
             try {
                 const token = localStorage.getItem('token');
                 await axios.post('/api/ticket-add', newTicket, {
@@ -90,102 +90,120 @@ function TicketAddForm() {
                 alert('회수권 등록에 실패했습니다. 다시 시도해주세요.');
             }
         } else {
-            // 비로그인 상태에서 로컬 스토리지에 고유 ID를 부여하여 저장
+            // 로그인이 되어있지 않은 경우 로컬 스토리지에 저장
             const existingTickets = JSON.parse(localStorage.getItem('tickets')) || [];
-            const ticketWithId = { ...newTicket, id: Date.now() }; // 로컬에서 고유 ID 부여
+
+            // 저장된 티켓의 개수 확인
+            const ticketCountInLocalStorage = existingTickets.length;
+            if (ticketCountInLocalStorage >= 10) {
+                alert('최대 10개의 회수권만 저장할 수 있습니다.');
+                return; // 최대 개수를 초과하면 등록 중지
+            }
+
+            const ticketWithId = { ...newTicket, id: Date.now() };
             existingTickets.push(ticketWithId);
             localStorage.setItem('tickets', JSON.stringify(existingTickets));
-            alert('회수권이 등록되었습니다!');
+            alert('회수권이 등록되었습니다!)');
             navigate('/ticket-list');
         }
     };
 
     const handleCustomCountChange = (e) => {
         const value = e.target.value;
-        if (!/^\d*$/.test(value)) {
-            alert('숫자만 입력 가능합니다.');
-        } else {
+        if (validateTicketCount(value)) {
             setCustomCount(value);
         }
     };
 
     return (
         <div>
-        <main>
-            <div className="app-container">
-                <div className="ticket-form">
-                    <h2>회수권 등록</h2>
-                    <InputField
-                        type="text"
-                        placeholder="클라이밍장 이름"
-                        value={gymName}
-                        onChange={handleGymNameChange} // 값 변경 시 검증
-                    />
-                    <div className="ticket-count-options">
-                        <OptionButton
-                            label="3회"
-                            isSelected={selectedCount === '3'}
-                            onClick={() => setSelectedCount('3')}
-                        />
-                        <OptionButton
-                            label="5회"
-                            isSelected={selectedCount === '5'}
-                            onClick={() => setSelectedCount('5')}
-                        />
-                        <OptionButton
-                            label="10회"
-                            isSelected={selectedCount === '10'}
-                            onClick={() => setSelectedCount('10')}
-                        />
-                        <OptionButton
-                            label="직접 입력"
-                            isSelected={selectedCount === ''}
-                            onClick={() => setSelectedCount('')}
-                        />
-                    </div>
-                    {selectedCount === '' && (
+            <main>
+                <div className="app-container">
+                    <div className="ticket-form">
+                        <h2>회수권 등록</h2>
                         <InputField
                             type="text"
-                            placeholder="직접 입력"
-                            value={customCount}
-                            onChange={handleCustomCountChange}
+                            placeholder="클라이밍장 이름"
+                            value={gymName}
+                            onChange={handleGymNameChange}
                         />
-                    )}
-                    <InputField
-                        type="date"
-                        placeholder="등록 날짜"
-                        value={registrationDate}
-                        onChange={(e) => setRegistrationDate(e.target.value)}
-                    />
-                    <p className="helper-text">(등록할 날짜를 선택하세요.)</p>
-                    <div className="expiry-options">
-                        <OptionButton
-                            label="3개월"
-                            isSelected={expiry === '3개월'}
-                            onClick={() => setExpiry('3개월')}
+                        <div className="ticket-count-options">
+                            <OptionButton
+                                label="3회"
+                                isSelected={selectedCount === '3'}
+                                onClick={() => {
+                                    setSelectedCount('3');
+                                    setCustomCount('');
+                                }}
+                            />
+                            <OptionButton
+                                label="5회"
+                                isSelected={selectedCount === '5'}
+                                onClick={() => {
+                                    setSelectedCount('5');
+                                    setCustomCount('');
+                                }}
+                            />
+                            <OptionButton
+                                label="10회"
+                                isSelected={selectedCount === '10'}
+                                onClick={() => {
+                                    setSelectedCount('10');
+                                    setCustomCount('');
+                                }}
+                            />
+                            <OptionButton
+                                label="직접 입력"
+                                isSelected={selectedCount === ''}
+                                onClick={() => {
+                                    setSelectedCount('');
+                                    setCustomCount('');
+                                }}
+                            />
+                        </div>
+                        {selectedCount === '' && (
+                            <InputField
+                                type="text"
+                                placeholder="직접 입력"
+                                value={customCount}
+                                onChange={handleCustomCountChange}
+                            />
+                        )}
+                        <InputField
+                            type="date"
+                            placeholder="등록 날짜"
+                            value={registrationDate}
+                            onChange={(e) => setRegistrationDate(e.target.value)}
                         />
-                        <OptionButton
-                            label="6개월"
-                            isSelected={expiry === '6개월'}
-                            onClick={() => setExpiry('6개월')}
-                        />
-                        <OptionButton
-                            label="7개월"
-                            isSelected={expiry === '7개월'}
-                            onClick={() => setExpiry('7개월')}
-                        />
-                        <OptionButton
-                            label="1년"
-                            isSelected={expiry === '1년'}
-                            onClick={() => setExpiry('1년')}
-                        />
+                        <p className="helper-text">(등록할 날짜를 선택하세요.)</p>
+                        <div className="expiry-options">
+                            <OptionButton
+                                label="3개월"
+                                isSelected={expiry === '3개월'}
+                                onClick={() => setExpiry('3개월')}
+                            />
+                            <OptionButton
+                                label="6개월"
+                                isSelected={expiry === '6개월'}
+                                onClick={() => setExpiry('6개월')}
+                            />
+                            <OptionButton
+                                label="7개월"
+                                isSelected={expiry === '7개월'}
+                                onClick={() => setExpiry('7개월')}
+                            />
+                            <OptionButton
+                                label="1년"
+                                isSelected={expiry === '1년'}
+                                onClick={() => setExpiry('1년')}
+                            />
+                        </div>
+                        <p className="helper-text">(사용기한을 선택하세요.)</p>
+                        <button onClick={handleRegister}>등록</button>
                     </div>
-                    <p className="helper-text">(사용기한을 선택하세요.)</p>
-                    <button onClick={handleRegister}>등록</button>
                 </div>
-            </div>
-        </main>
-    </div>
+            </main>
+        </div>
     );
 }
 

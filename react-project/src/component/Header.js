@@ -32,7 +32,6 @@ const Header = ({ onLogout, isLoggedIn }) => {
     }
   };
 
-  console.log('현재 로그인 상태:', isLoggedIn);
   return (
     <header className="app-header">
       <h2>Our Cimbing Life</h2>

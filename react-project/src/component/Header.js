@@ -10,7 +10,6 @@ const Header = ({ onLogout, isLoggedIn }) => {
 
   const handleToggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
-    console.log('메뉴 토글 상태:', isMenuOpen);
   };
 
   const handleLogoutClick = async () => {

@@ -2,8 +2,6 @@ import axios from 'axios';
 //const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 export const handleDecrement = async (ticketId, tickets, setTickets, isLoggedIn, saveTickets) => {
-  console.log('차감하려는 티켓 ID :', ticketId);
-  console.log('Before update, tickets :', tickets);
 
   // 티켓 차감 처리
   const updatedTickets = tickets.map(ticket => {
@@ -11,17 +9,13 @@ export const handleDecrement = async (ticketId, tickets, setTickets, isLoggedIn,
       const updatedTicket = { ...ticket, ticketCount: ticket.ticketCount - 1 };
 
       if (updatedTicket.ticketCount <= 0) {
-        console.log('Ticket count is zero or less, removing ticket:', updatedTicket);
         return null;
       }
 
-      console.log('Updated ticket:', updatedTicket);
       return updatedTicket;
     }
     return ticket;
   }).filter(ticket => ticket !== null);
-
-  console.log('After update, updatedTickets:', updatedTickets);
 
   if (isLoggedIn) {
     // 로그인 상태일 때 서버로 요청을 보내기

@@ -35,8 +35,6 @@ export const handleDecrement = async (ticketId, tickets, setTickets, isLoggedIn,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       
-      console.log('Ticket updated on server');
-      
       // 서버 업데이트 성공 시에만 상태를 업데이트
       setTickets(updatedTickets);
     } catch (error) {

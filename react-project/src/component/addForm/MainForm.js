@@ -83,6 +83,14 @@ function TicketAddForm() {
                 await axios.post('/api/ticket-add', newTicket, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
+                // Google Analytics 이벤트 기록
+                if (window.gtag) {
+                    window.gtag('event', 'ticket_add', {
+                        event_category: 'Ticket',
+                        event_label: 'Ticket Added',
+                        value: 1
+                    });
+                }
                 alert('회수권이 등록되었습니다!');
                 navigate('/ticket-list');
             } catch (error) {

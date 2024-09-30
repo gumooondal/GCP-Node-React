@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { gtag } from '../../analytics';
 
 export const login = async (userId, password, navigate) => {
   try {
@@ -22,7 +23,14 @@ export const register = async (userId, password, navigate) => {
       userId,
       password,
     });
-
+    // Google Analytics 이벤트 기록
+    if (window.gtag) {
+      window.gtag('event', 'sign up', {
+        event_category: 'User',
+        event_label: 'sign up',
+        value: 1
+      });
+    }
     // 회원가입 성공 처리
     alert('회원가입이 완료되었습니다. 회수권을 등록해보세요.');
     localStorage.setItem('token', response.data.token);

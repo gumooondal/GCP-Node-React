@@ -5,6 +5,7 @@ import InputField from './InputField';
 import { tcheckInputWord } from '../util/tcheckInputWord';
 import OptionButton from './OptionButton';
 import axios from 'axios';
+import { gtag } from '../../analytics';
 
 function TicketAddForm() {
     const [gymName, setGymName] = useState('');

@@ -9,7 +9,7 @@ export const login = async (userId, password, navigate) => {
     });
 
     console.log('로그인 응답: 로그인 성공');
-    localStorage.setItem('token', response.data.token);
+    sessionStorage.setItem('token', response.data.token);
     navigate('/ticket-list'); // 로그인 성공 시 페이지 이동
     return true; // 로그인 성공 시 true 반환
   } catch (error) {
@@ -33,7 +33,7 @@ export const register = async (userId, password, navigate) => {
     }
     // 회원가입 성공 처리
     alert('회원가입이 완료되었습니다. 회수권을 등록해보세요.');
-    localStorage.setItem('token', response.data.token);
+    sessionStorage.setItem('token', response.data.token);
     navigate('/'); // 홈으로 이동
     return true; // 회원가입 성공 시 true 반환
   } catch (error) {

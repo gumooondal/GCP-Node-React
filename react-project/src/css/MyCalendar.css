@@ -1,0 +1,51 @@
+/* MyCalendar.css */
+
+.calendar-container {
+  display: flex; /* Flexbox 사용 */
+  flex-direction: column; /* 세로 방향 정렬 */
+  align-items: center; /* 가로 중앙 정렬 */
+  height: 100vh; /* 전체 화면 높이 사용 */
+  margin: 50px;
+}
+
+.react-calendar {
+  border-radius: 10px; /* 모서리 둥글기 */
+  border: 1px solid var(--festie-gray-400, #c8c8c8); /* 전체 테두리 스타일 */
+  margin: 30px;
+}
+
+.react-calendar__navigation__label > span {
+  color: var(--festie-gray-800, #3a3a3a); /* 달력 상단 년/월 글씨 색상 */
+  font-family: 'SUIT Variable'; /* 글꼴 설정 */
+  font-size: 13px; /* 글꼴 크기 */
+  font-weight: 500; /* 글꼴 두께 */
+  line-height: 140%; /* 줄 높이 */
+}
+
+.react-calendar__month-view__days__day--weekend {
+  color: var(--festie-gray-800, #3a3a3a); /* 주말 날짜 색상 */
+}
+
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+  background: var(--festie-primary-orange, #ff7a00); /* hover 했을 때 색상 변경 */
+}
+
+.react-calendar__tile--now {
+  background: white; /* 오늘 날짜 배경 색상 */
+  color: var(--festie-gray-800, #3a3a3a); /* 오늘 날짜 텍스트 색상 */
+}
+
+.react-calendar__tile--active {
+  background: var(--festie-primary-orange, #ff7a00); /* 선택된 날짜 배경 색상 */
+  color: white; /* 선택된 날짜 텍스트 색상 */
+}
+
+/* 선택한 날짜 텍스트 스타일 */
+.selected-date {
+  font-size: 18px; /* 텍스트 크기 */
+  font-weight: bold; /* 텍스트 굵기 */
+  margin-top: 10px; /* 위 여백 */
+}
+
+  

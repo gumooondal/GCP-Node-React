@@ -20,7 +20,7 @@ export const handleDecrement = async (ticketId, tickets, setTickets, isLoggedIn,
   if (isLoggedIn) {
     // 로그인 상태일 때 서버로 요청을 보내기
     try {
-      const token = localStorage.getItem('token');
+      const token = sessionStorage.getItem('token');
       
       // 선택된 ticketId에 해당하는 티켓만 찾기
       const selectedTicket = tickets.find(ticket => ticket.id === ticketId);

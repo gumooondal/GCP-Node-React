@@ -7,7 +7,7 @@ export const handleDelete = async (ticketId, isLoggedIn, tickets, setTickets, sa
   if (isConfirmed) {
     if (isLoggedIn) {
       try {
-        const token = localStorage.getItem('token');
+        const token = sessionStorage.getItem('token');
         const response = await axios.delete(`/api/ticket-delete/${ticketId}`, {
           headers: { Authorization: `Bearer ${token}` }
         });

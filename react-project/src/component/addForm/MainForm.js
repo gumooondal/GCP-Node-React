@@ -21,7 +21,7 @@ function TicketAddForm() {
         const formattedDate = today.toLocaleDateString('en-CA');
         setRegistrationDate(formattedDate);
 
-        const token = localStorage.getItem('token');
+        const token = sessionStorage.getItem('token');
         if (token) {
             setIsLoggedIn(true);
         }
@@ -80,7 +80,7 @@ function TicketAddForm() {
 
         if (isLoggedIn) {
             try {
-                const token = localStorage.getItem('token');
+                const token = sessionStorage.getItem('token');
                 await axios.post('/api/ticket-add', newTicket, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
@@ -112,7 +112,7 @@ function TicketAddForm() {
             const ticketWithId = { ...newTicket, id: Date.now() };
             existingTickets.push(ticketWithId);
             localStorage.setItem('tickets', JSON.stringify(existingTickets));
-            alert('회수권이 등록되었습니다!)');
+            alert('회수권이 등록되었습니다!');
             navigate('/ticket-list');
         }
     };

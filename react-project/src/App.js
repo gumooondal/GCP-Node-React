@@ -8,14 +8,15 @@ import NavBar from './component/NavBar';
 import LoginPage from './component/login/LoginPage';
 import TicketAddForm from './component/addForm/MainForm';
 import TicketList from './component/list/TicketList';
+import MyCalendar from './component/calendar/MyCalendar';
 
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    // localStorage에서 토큰 확인
-    const token = localStorage.getItem('token');
+    // sessionStorage에서 토큰 확인
+    const token = sessionStorage.getItem('token');
     if (token) {
       setIsLoggedIn(true); // 토큰이 있으면 로그인 상태로 설정
     }
@@ -26,9 +27,10 @@ function App() {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('token'); // 로컬 스토리지에서 토큰 삭제
+    sessionStorage.removeItem('token'); // 세션 스토리지에서 토큰 삭제
     setIsLoggedIn(false); // 로그아웃 상태로 변경
   };
+
 
   return (
     <Router>
@@ -39,6 +41,7 @@ function App() {
       : <LoginPage onLogin={handleLogin} />}/>
       <Route path="/ticket-add" element={<TicketAddForm />} />
       <Route path="/ticket-list" element={<TicketList />} />
+      <Route path="/calendar" element={<MyCalendar/>} />
     </Routes>
     <NavBar />
   </Router>

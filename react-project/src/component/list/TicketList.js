@@ -15,10 +15,9 @@ function TicketList() {
   const [tickets, setTickets] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userId, setUserId] = useState(''); // userPhoneNumber → userId로 변경
-  const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = sessionStorage.getItem('token');
     if (token) {
       setIsLoggedIn(true);
       fetchTicketsFromServer(token, setTickets, setUserId); // setUserPhoneNumber → setUserId로 변경

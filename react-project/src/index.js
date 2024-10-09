@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { initializeAnalytics } from './analytics'; 
 
+
 // Google Analytics 초기화
 initializeAnalytics();
 
